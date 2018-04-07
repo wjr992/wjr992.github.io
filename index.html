@@ -7,7 +7,7 @@ body{
 </style>
 <h1>William Revell</h1>
   <div>
-    <h2>About</h2>
+    <h2 id="About" onclick="revealText()">About</h2>
       <p>"I have recently completed my Bachelors of Computer Science at the University of Saskatchewan, and am interested in pursuing job 
       opportunities in the field of software engineering. I enjoy utilizing critical thinking to solve complex problems and learning throughout
       the process. I have experience working in team environments and work well communicating ideas and implementing them."</p>
@@ -24,3 +24,8 @@ body{
     <h2>Education</h2>
   </div>
 </body>
+<script>
+function revealText(){
+    document.getElementById("About").style.color = "red";
+}
+</script>
