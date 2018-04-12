@@ -1,32 +1,45 @@
-My Page
-<body>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
+
+<body ng-app="myApp">
 <style>
+<html>
 body{
   background-color: green;
 }
 </style>
 <h1>William Revell</h1>
   <div>
-    <h2 id="About" onclick="revealText()">About</h2>
+    <h2>About</h2>
       <p id="Stuff">"I have recently completed my Bachelors of Computer Science at the University of Saskatchewan, and am interested in pursuing job 
       opportunities in the field of software engineering. I enjoy utilizing critical thinking to solve complex problems and learning throughout
       the process. I have experience working in team environments and work well communicating ideas and implementing them."</p>
   </div>
   <div>
-    <h2>Portfolio</h2>
+    <a href="#!portfolio">Portfolio</a>
+    <a href="#!experience">Experience</a>
+    <a href="#!education">Education</h2>
   </div>
   <div>
     <h2>Experience</h2>
       <h3>Languages</h3>
       <h3>Fields</h3>
   </div>
-  <div>
-    <h2>Education</h2>
-  </div>
-</body>
+
 <script>
-document.getElementById("About").onclick = function() {revealText()};
-function revealText(){
-    document.getElementById("Stuff").classList.toggle("show");
-}
+var app = angular.module("MyApp", ["ngRoute"]);
+app.config(function($routeProvider){
+  $routeProvider
+  .when("/portfolio", {
+     templateUrl : "portfolio.htm"
+  })
+  .when("/experience", {
+     templateUrl : "experience.htm"
+  })
+  .when("/education", {
+     templateUrl : "education.htm"
+  });
+});
 </script>
+</body>
+</html>
