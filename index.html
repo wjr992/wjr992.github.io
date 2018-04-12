@@ -12,7 +12,7 @@ body{
 <h1>William Revell</h1>
   
   <div>
-    <p><a href="#!">About</a></p>
+    <a href="#!">About</a>
     <a href="#!portfolio">Portfolio</a>
     <a href="#!experience">Experience</a>
     <a href="#!education">Education</a>
@@ -25,16 +25,16 @@ var app = angular.module("MyApp", ["ngRoute"]);
 app.config(function($routeProvider){
   $routeProvider
   .when("/", {
-     templateUrl : "about.html"
+     templateUrl : "about.htm"
   })
   .when("/portfolio", {
-     templateUrl : "portfolio.html"
+     templateUrl : "portfolio.htm"
   })
   .when("/experience", {
-     templateUrl : "experience.html"
+     templateUrl : "experience.htm"
   })
   .when("/education", {
-     templateUrl : "education.html"
+     templateUrl : "education.htm"
   });
 });
 </script>
