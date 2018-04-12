@@ -20,24 +20,19 @@ body{
     <a href="#!experience">Experience</a>
     <a href="#!education">Education</h2>
   </div>
-  <div>
-    <h2>Experience</h2>
-      <h3>Languages</h3>
-      <h3>Fields</h3>
-  </div>
-
+ 
 <script>
 var app = angular.module("MyApp", ["ngRoute"]);
 app.config(function($routeProvider){
   $routeProvider
   .when("/portfolio", {
-     templateUrl : "portfolio.htm"
+     templateUrl : "portfolio.html"
   })
   .when("/experience", {
-     templateUrl : "experience.htm"
+     templateUrl : "experience.html"
   })
   .when("/education", {
-     templateUrl : "education.htm"
+     templateUrl : "education.html"
   });
 });
 </script>
