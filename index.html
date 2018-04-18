@@ -1,27 +1,33 @@
+<!DOCTYPE html>
 <html>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
-<style>
-body{
-  background-color: blue;
-}
-</style>
+<head>
+    <meta charset=“UTF-8”>	
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">	
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
+    <style>
+	body{
+		background-color: #B8860B;
+	}
+	</style>
+</head>
   
  
 <body ng-app="myApp">
+    <header>
+	<h1>William Revell</h1>
   
-<h1>William Revell</h1>
-  
-<a href="#!">About</a>
-<a href="#!portfolio">Portfolio</a>
-<a href="#!experience">Experience</a>
-<a href="#!education">Education</a>
-{{3+3}}  
+	<a href="#!">About</a>
+	<a href="#!portfolio">Portfolio</a>
+	<a href="#!experience">Experience</a>
+	<a href="#!education">Education</a>
+	
+
 <div ng-view></div>
   
  
 <script>
-var app = angular.module("MyApp", ["ngRoute"]);
+var app = angular.module("myApp", ["ngRoute"]);
 app.config(function($routeProvider){
   $routeProvider
   .when("/", {
@@ -38,5 +44,6 @@ app.config(function($routeProvider){
   });
 });
 </script>
+</header>
 </body>
 </html>
