@@ -1,26 +1,32 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset=“UTF-8”>	
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">	
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
     <style>
 	body{
-		background-color: #B8860B;
+		background-color: black;
 	}
+	h1 {
+		font-family: "Times New Roman", Times, serif, bold;
+	}
+	
+	
 	</style>
 </head>
   
  
 <body ng-app="myApp">
     <header>
-	<h1>William Revell</h1>
+	<h1 style="color:white;margin-top:2em;margin-left:1em;margin-right:1em;border-top: 6px solid; border-color:white;">William Revell</h1>
   
-	<a href="#!">About</a>
-	<a href="#!portfolio">Portfolio</a>
-	<a href="#!experience">Experience</a>
-	<a href="#!education">Education</a>
+	<a href="#!" style="margin-left:3em">About</a>
+	<a href="#!portfolio" style="margin-left:1em">Portfolio</a>
+	<a href="#!experience" style="margin-left:1em">Experience</a>
+	
 	
 
 <div ng-view></div>
@@ -39,11 +45,14 @@ app.config(function($routeProvider){
   .when("/experience", {
      templateUrl : "experience.htm"
   })
-  .when("/education", {
-     templateUrl : "education.htm"
-  });
 });
 </script>
 </header>
+<div style="background-color:SpringGreen;text-align:center;">
+	<h2>Contact Information</h2>
+		<li style="font-size:100%;">Cell: (306)203-4827</li>
+		<li style="font-size:100%;">Email: wjtrevell@gmail.com</li>
+		<a href="https://www.linkedin.com/in/williamjtrevell/">LinkedIn</a>
+</div>
 </body>
 </html>
