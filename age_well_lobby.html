@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+  
+	<head>
+		<script src="https://aframe.io/releases/0.7.1/aframe.min.js"></script>
+		<script src="https://rawgit.com/donmccurdy/aframe-extras/v2.1.1/dist/aframe-extras.loaders.min.js"></script>
+		<script src="https://unpkg.com/super-hands@2.1.0/dist/super-hands.min.js"></script>
+		<script src="https://cdn.rawgit.com/donmccurdy/aframe-physics-system/v3.1.2/dist/aframe-physics-system.min.js"></script> 
+  
+		<script>
+		
+			
+		
+			AFRAME.registerComponent('custom_link', {
+				schema: {default: ''},
+
+				init: function () {
+					var url = this.data;
+					this.el.addEventListener('click', function () {
+						window.location.href = url;
+					});
+				}
+
+			}); 
+		
+			AFRAME.registerComponent('continue_button', {
+				schema: {default: ''},
+
+				init: function () {
+				
+					this.el.addEventListener('click', function () {
+						var instructions1 = document.querySelector("#instructions1");
+						var instructions2 = document.querySelector("#instructions2");
+						var instructions3 = document.querySelector("#instructions3");
+						var room = document.querySelector("#room");
+						var continue_button = document.querySelector("#continue_button");
+						var start_button = document.querySelector("#start_button");
+						instructions1.setAttribute('visible', false);
+						instructions2.setAttribute('visible', false);
+						instructions3.setAttribute('visible', false);
+						room.setAttribute('visible', false);
+						continue_button.setAttribute('visible', false);
+						start_button.setAttribute('visible', true);
+					});
+				}
+
+			}); 	
+			
+				
+		</script> 
+	</head>
+	<body>
+    <a-scene>
+	  
+		<a-text value="CONTINUE" id="continue_button" position="-0.5 0 -5" color="white" alignment="center">
+			<a-box position="0.5 0 0" color="black" scale="2 1 0.001" continue_button></a-box>
+		</a-text>
+		
+				
+		<a-text id="instructions1" value="Click and drag the \n mouse in the direction \n you want to turn the \n screen" color="#FFFFFF"
+        position="-6.5 3 -5" scale="1.5 1.5 1.5" alignment="center">
+			<a-box position="1 0 -0.01" color="black" scale="3 1 0.01" transparent="true"></a-box>
+			<a-image src="mouse_grab.png" position="1 0.75 0" scale="0.3 0.3 0.3">
+				<a-animation attribute="position" to="0.5 1.5 0" direction="alternate" dur="2000" repeat="indefinite"></a-animation>
+			</a-image>
+		</a-text>
+		
+		<a-text id="instructions2" value="Position the cursor over \n an object and click to \n interact with it" color="#FFFFFF"
+        position="-1.5 3 -5" scale="1.5 1.5 1.5" alignment="center">
+			<a-box position="1 0 -0.01" color="black" scale="3 1 0.01" transparent="true"></a-box>
+			<a-text value="CONTINUE" id="continue_button" position="1 1 0" color="white" alignment="center" scale="0.2 0.2 0.2">
+				<a-box position="0.5 0 0" color="black" scale="2 1 0.001" custom_link="age_well_intro.html"></a-box>
+		
+				<a-ring color="black" radius-inner="1.3" radius-outer="2" scale="0.07 0.14 0.07" position="0 0 0.1">
+					<a-animation attribute="position" to="0.5 1.5 0.1" direction="alternate" dur="2000" repeat="indefinite"></a-animation>
+				</a-ring>
+			</a-text>
+		</a-text>
+		
+		<a-sphere src="age-well-competition.png" radius="3" position="-8 1 -15">
+			<a-animation attribute="rotation" to="0 -360 0" dur="13000" repeat="indefinite" easing="linear"></a-animation>
+		</a-sphere>
+		
+		<a-sphere src="age-well-logo.png" radius="3" position="8 1 -15">
+			<a-animation attribute="rotation" to="0 -360 0" dur="13000" repeat="indefinite" easing="linear"></a-animation>
+		</a-sphere>
+		
+		<a-text value="START" id="start_button" color="white" position="-0.5 -1 -5" alignment="center" visible="false">
+			<a-box position="0.5 0 0" color="black" scale="2 1 0.001" custom_link="age_well_intro.html"></a-box>
+		</a-text>
+		
+		
+		
+		
+		<a-text id="instructions3" value="Use the WASD or arrow \n keys to navigate around \n the page" color="#FFFFFF"
+        position="3.5 3 -5" scale="1.5 1.5 1.5" alignment="center">
+			<a-box position="1 0 -0.01" color="black" scale="3 1 0.01" transparent="true"></a-box>
+			<a-image src="arrowkeys.png" position="1 1 0" ></a-image>
+		</a-text>
+		
+		<a-light type="ambient" color="#445451"></a-light>
+		<a-light type="point" intensity="2" position="2 4 4"></a-light>
+		
+		<a-entity ply-model="src: Luxsonic2.ply" rotation="-90 0 0" position="0 -5 0">
+			<a-animation attribute="rotation" to="-90 -360 0" dur="100000" repeat="indefinite" easing="linear"></a-animation>
+		</a-entity>
+		
+		<!--<a-plane position="0 -10 0" rotation="270 0 0" width="1000" height="1000" color="green" static-body></a-plane>-->
+		
+		<a-entity id="room" position="0,0,0" visible="false">
+			<a-box position="0 10 30" rotation="0 180 0" depth="1" width="60" height="40" color="cyan" static-body></a-box>
+			<a-box position="-30 10 0" rotation="0 90 0" depth="1" width="60" height="40" color="cyan" static-body></a-box>
+			
+			<a-box position="0 10 -30" rotation="0 0 0" depth="1" width="60" height="40" color="cyan" static-body></a-box>
+			
+			<a-box position="30 10 0" rotation="0 -90 0" depth="1" width="60" height="40" color="cyan" static-body></a-box>	
+			<a-box position="0 20 0" rotation="90 0 0" depth="1" width="60" height="60" color="cyan" static-body></a-box>
+			<a-box position="0 -10 0" rotation="270 0 0" depth="1" width="60" height="60" color="cyan" static-body></a-box>
+		</a-entity> 
+		
+		<a-sky src="#winter_background"></a-sky>
+		
+		<a-camera >
+			<a-cursor></a-cursor>
+		</a-camera>
+		
+		
+		<a-assets>
+		
+		<img id="winter_background" crossorigin="anonymous" src="winter-2383930_1920.jpg" scale="3 3 3">
+		
+		
+		
+		</a-assets>
+		
+	</a-scene>
+  </body>
+</html>

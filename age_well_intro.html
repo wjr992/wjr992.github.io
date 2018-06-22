@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+  <body>
+  
+    <script src="https://aframe.io/releases/0.7.1/aframe.min.js"></script>
+    <script src="https://unpkg.com/super-hands@2.1.0/dist/super-hands.min.js"></script>
+	<script src="https://cdn.rawgit.com/donmccurdy/aframe-physics-system/v3.1.2/dist/aframe-physics-system.min.js"></script> 
+  
+  <script>
+		AFRAME.registerComponent('play-on-button-click', {
+			init: function () {
+			
+			this.onClick = this.onClick.bind(this);
+			},
+			play: function () {
+			this.el.addEventListener('click', this.onClick);
+			},
+			pause: function () {
+			this.el.removeEventListener('click', this.onClick);
+			},
+			onClick: function (evt) {
+			
+			//var video = document.querySelector("#player");
+			var video = document.querySelector("#video1");
+			if (!video) { return; }
+				//video.components.material.material.map.image.play();
+				video.play();
+				video.playbackRate=1;
+			}
+		});
+		
+		AFRAME.registerComponent('pause-on-button-click', {
+			init: function () {
+			
+			this.onClick = this.onClick.bind(this);
+			},
+			play: function () {
+			this.el.addEventListener('click', this.onClick);
+			},
+			pause: function () {
+			this.el.removeEventListener('click', this.onClick);
+			},
+			onClick: function (evt) {
+			//var video = document.querySelector("#player");
+			var video = document.querySelector("#video1");
+			if (!video) { return; }
+				//video.components.material.material.map.image.pause();
+				video.pause();
+			}
+		});
+		
+		AFRAME.registerComponent('custom_link', {
+				schema: {default: ''},
+
+				init: function () {
+					var url = this.data;
+					this.el.addEventListener('click', function () {
+					window.location.href = url;
+					});
+				}
+
+			}); 
+			/*
+			AFRAME.registerComponent('fade_out', {
+				schema: {default: ''},
+
+				init: function () {
+					setTimeout(function(){
+					this.el.fadeOut();
+					
+					},3000);
+				}
+				
+			});*/ 
+		
+			
+		</script> 
+    <a-scene>
+		
+		 <!-- The original example also has this 180 degree rotation, to appear to be going forward. -->
+        <a-videosphere id="player" rotation="0 180 0" src="#video1" >
+        </a-videosphere>
+	  
+		<!--<a-image src="#play-image" position="-1 -2 -5" play-on-button-click></a-image>
+		<a-image src="#stop-image" position="1 -2 -5" pause-on-button-click></a-image>
+		-->
+		<a-light type="ambient" color="#445451"></a-light>
+		<a-light type="point" intensity="2" position="2 4 4"></a-light>
+		
+		<a-camera >
+			<a-cursor></a-cursor>
+		</a-camera>
+		
+		<a-entity id="text">
+			<a-text id="instructions" value="Drag to look around the video" position="-4 0 -5" scale="3 3 3" visible="true"></a-text>
+			<a-animation attribute="visible" begin="10000" dur="1000" to="false" repeat="indefinite"></a-animation>
+		</a-entity>
+		<a-text id="instructions" value="Drag to look around the video" position="0 0 -5" visible="true">
+			<a-animation attribute="visible" dur="19000" to="false"></a-animation>
+		</a-text>
+		
+		<a-assets>
+		
+		
+		<!-- Single source video. -->
+        <video id="video1" src="360_0044.mp4" preload="auto" autoplay style="display:none" loop="false" crossOrigin="anonymous"  playsinline webkit-playsinline> 
+        </video>
+  
+		<img id="play-image" src="play-button.png">
+		<img id="stop-image" src="stop-button.png">
+		
+		
+    </a-assets>
+		<script>
+			document.getElementById('video1').addEventListener('ended',videoEnded,false);
+		function videoEnded(e) {
+			window.location.href = "age_well_video_question1.html";	
+		}
+		</script>
+	</a-scene>
+  </body>
+</html>
