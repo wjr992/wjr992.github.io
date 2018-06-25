@@ -5,73 +5,9 @@
     <script src="https://aframe.io/releases/0.7.1/aframe.min.js"></script>
     <script src="https://unpkg.com/super-hands@2.1.0/dist/super-hands.min.js"></script>
 	<script src="https://cdn.rawgit.com/donmccurdy/aframe-physics-system/v3.1.2/dist/aframe-physics-system.min.js"></script> 
+	<script src="age-well-components.js"></script>
   
   <script>
-		AFRAME.registerComponent('play-on-button-click', {
-			init: function () {
-			
-			this.onClick = this.onClick.bind(this);
-			},
-			play: function () {
-			this.el.addEventListener('click', this.onClick);
-			},
-			pause: function () {
-			this.el.removeEventListener('click', this.onClick);
-			},
-			onClick: function (evt) {
-			
-			//var video = document.querySelector("#player");
-			var video = document.querySelector("#video1");
-			if (!video) { return; }
-				//video.components.material.material.map.image.play();
-				video.play();
-				video.playbackRate=1;
-			}
-		});
-		
-		AFRAME.registerComponent('pause-on-button-click', {
-			init: function () {
-			
-			this.onClick = this.onClick.bind(this);
-			},
-			play: function () {
-			this.el.addEventListener('click', this.onClick);
-			},
-			pause: function () {
-			this.el.removeEventListener('click', this.onClick);
-			},
-			onClick: function (evt) {
-			//var video = document.querySelector("#player");
-			var video = document.querySelector("#video1");
-			if (!video) { return; }
-				//video.components.material.material.map.image.pause();
-				video.pause();
-			}
-		});
-		
-		AFRAME.registerComponent('custom_link', {
-				schema: {default: ''},
-
-				init: function () {
-					var url = this.data;
-					this.el.addEventListener('click', function () {
-					window.location.href = url;
-					});
-				}
-
-			}); 
-			/*
-			AFRAME.registerComponent('fade_out', {
-				schema: {default: ''},
-
-				init: function () {
-					setTimeout(function(){
-					this.el.fadeOut();
-					
-					},3000);
-				}
-				
-			});*/ 
 		
 			
 		</script> 
