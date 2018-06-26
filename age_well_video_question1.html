@@ -14,6 +14,7 @@
 		
 		 <!-- The original example also has this 180 degree rotation, to appear to be going forward. -->
         <a-videosphere id="player" rotation="0 180 0" src="#video1" >
+			<a-animation attribute="material.opacity" begin="startanimation" to="0.5"></a-animation>
         </a-videosphere>
 	  
 	    <!--<a-image position="2 0 -5" link="href: vid_gallery2.html"></a-image >	-->	
@@ -21,21 +22,28 @@
 		<!--<a-image src="#play-image" position="-1 -2 -5" play-on-button-click></a-image>
 		<a-image src="#stop-image" position="1 -2 -5" pause-on-button-click></a-image>
 		-->
-		<a-text id="question_text" value="This is a question? \n A- this is an answer. \n B- this is an answer. \n C- this is an answer." color="#FFFFFF"
-        position="-3 3 -5" scale="1.5 1.5 1.5" alignment="center" visible="false" font="mozillavr">
-			<a-box src="futureui1.png" position="1 0 -0.01" scale="2.5 1.5 0.01" transparent="true"></a-box>
+		<a-text id="question_text" value="Mr.Anderson said No when asked if he has pain. 
+		How do you interpret this response? \n 
+		a) Accept Mr.Anderon's self-report of no pain.
+		Assume his agitation is due to being in an unfamiliar
+		setting, assist him to bed. \n 
+		b) Assess pain using behavioural/observational tool  
+		(e.g., PAINAD, PACSLAC), while assisting him to bed." 
+		color="#FFFFFF"
+        position="-2 3 -5" scale="1.5 1.5 1.5" alignment="center" visible="false" font="mozillavr">
+			<a-box color="black" position="2.4 0 -0.01" scale="5.4 3.2 0.01" material="opacity: 0.8"></a-box>
 			<!--Correct answer-->
-			<a-image id="answer1" src="button.png" position="1.5 -2 0" custom_link="answer1.html" visible="false">
-				<a-text value="B" color="black" position="-0.1 0 0.1" scale="1 1 1" alignment="center"></a-text>
-				<a-animation attribute="scale" begin="mouseenter" dur="300" to="1.5 1.5 1.5"></a-animation>
-				<a-animation attribute="scale" begin="mouseleave" dur="300" to="1 1 1"></a-animation>
-			</a-image>
+			<a-box id="answer1" scale="2.7 1 0.01" color="black" position="3.75 -2.1 0" custom_link="answer1.html" material="opacity: 0.8">
+				<a-text value="B" color="black" position="-0.1 0 0.1" scale="2 2 2" alignment="center"></a-text>
+				<a-animation attribute="material.color" begin="mouseenter" dur="300" from="black" to="red"></a-animation>
+				<a-animation attribute="material.color" begin="mouseleave" dur="300" from="red" to="black"></a-animation>
+			</a-box>
 			<!--Incorrect answer-->
-			<a-image id="answer2" src="button.png" position="0 -2 0" custom_link="age_well_video_question1.html" visible="false">
-				<a-text value="A" color="black" position="-0.1 0 0.1" scale="1 1 1" alignment="center"></a-text>
-				<a-animation attribute="scale" begin="mouseenter" dur="300" to="1.5 1.5 1.5"></a-animation>
-				<a-animation attribute="scale" begin="mouseleave" dur="300" to="1 1 1"></a-animation>
-			</a-image>
+			<a-box id="answer2" color="black" scale="2.7 1 0.01" position="1.05 -2.1 0" custom_link="answer2.html" material="opacity: 0.8">
+				<a-text value="A" color="black" position="-0.1 0 0.1" scale="2 2 2" alignment="center"></a-text>
+				<a-animation attribute="material.color" begin="mouseenter" dur="300" from="black" to="red"></a-animation>
+				<a-animation attribute="material.color" begin="mouseleave" dur="300" from="red" to="black"></a-animation>
+			</a-box>
 		</a-text>
 		
 		<!--<a-image id="answer1" src="button.png" position="-2 0 -5" custom_link="vid_gallery2.html" visible="false">
@@ -46,9 +54,14 @@
 		<a-light type="ambient" color="#445451"></a-light>
 		<a-light type="point" intensity="2" position="2 4 4"></a-light>
 		
-		<a-camera >
-			<a-cursor></a-cursor>
-		</a-camera>
+		
+			<a-camera id="camera" wasd-controls-enabled="false">
+				<a-entity position="0 0 -3"
+					geometry="primitive: ring; radiusInner: 0.04; radiusOuter: 0.06;"
+					material="color: cyan; shader: flat"
+					cursor="maxDistance: 30; fuse: true">
+				</a-entity>
+			</a-camera>
 		
 		
 		<a-assets>
@@ -66,13 +79,12 @@
     </a-assets>
 		<script>
 			document.getElementById('video1').addEventListener('ended',myHandler,false);
-		function myHandler(e) {
-			var answer1 = document.querySelector("#answer1");
-			answer1.setAttribute('visible', true);
-			var answer2 = document.querySelector("#answer2");
-			answer2.setAttribute('visible', true);
-			var question = document.querySelector("#question_text");
-			question.setAttribute('visible', true);
+			var player = document.getElementById('player');
+
+			function myHandler(e) {
+				var question = document.querySelector("#question_text");
+				question.setAttribute('visible', true);
+				player.emit('startanimation');	
 			
 		}
 		</script>

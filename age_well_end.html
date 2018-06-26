@@ -24,12 +24,19 @@
 		<a-light type="ambient" color="#445451"></a-light>
 		<a-light type="point" intensity="2" position="2 4 4"></a-light>
 		
-		<a-camera >
-			<a-cursor></a-cursor>
-		</a-camera>
 		
-		<a-image id="replay_button" src="replay_button.png" position="0 0.5 -3" custom_link="workspace.html" visible="false">
-		</a-image>
+			<a-camera id="camera" wasd-controls-enabled="false">
+				<a-entity position="0 0 -3"
+					geometry="primitive: ring; radiusInner: 0.04; radiusOuter: 0.06;"
+					material="color: cyan; shader: flat"
+					cursor="maxDistance: 30; fuse: true">
+				</a-entity>
+			</a-camera>
+		
+		
+		<a-box id="replay_button" position="0 0 -5" color="black" material="opacity: 0.8" scale="1 1 0.01" custom_link="workspace.html" visible="false">
+			<a-text value="play" position="-0.4 0.25 0" font="mozillavr" scale="2 2 1"></a-text>
+		</a-box>
 		
 		
 		<a-assets>

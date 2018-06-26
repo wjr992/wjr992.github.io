@@ -5,97 +5,76 @@
     <script src="https://aframe.io/releases/0.7.1/aframe.min.js"></script>
     <script src="https://unpkg.com/super-hands@2.1.0/dist/super-hands.min.js"></script>
 	<script src="https://cdn.rawgit.com/donmccurdy/aframe-physics-system/v3.1.2/dist/aframe-physics-system.min.js"></script> 
+	<script src="age-well-components.js"></script>
   
   <script>
-		AFRAME.registerComponent('play-on-button-click', {
-			init: function () {
-			
-			this.onClick = this.onClick.bind(this);
-			},
-			play: function () {
-			this.el.addEventListener('click', this.onClick);
-			},
-			pause: function () {
-			this.el.removeEventListener('click', this.onClick);
-			},
-			onClick: function (evt) {
-			
-			//var video = document.querySelector("#player");
-			var video = document.querySelector("#video1");
-			if (!video) { return; }
-				//video.components.material.material.map.image.play();
-				video.play();
-				video.playbackRate=1;
-			}
-		});
-		
-		AFRAME.registerComponent('pause-on-button-click', {
-			init: function () {
-			
-			this.onClick = this.onClick.bind(this);
-			},
-			play: function () {
-			this.el.addEventListener('click', this.onClick);
-			},
-			pause: function () {
-			this.el.removeEventListener('click', this.onClick);
-			},
-			onClick: function (evt) {
-			//var video = document.querySelector("#player");
-			var video = document.querySelector("#video1");
-			if (!video) { return; }
-				//video.components.material.material.map.image.pause();
-				video.pause();
-			}
-		});
-		
-		AFRAME.registerComponent('custom_link', {
-				schema: {default: ''},
-
-				init: function () {
-					var url = this.data;
-					this.el.addEventListener('click', function () {
-					window.location.href = url;
-					});
-				}
-
-			}); 
-		
 			
 		</script> 
     <a-scene>
 		
 		 <!-- The original example also has this 180 degree rotation, to appear to be going forward. -->
         <a-videosphere id="player" rotation="0 180 0" src="#video1" >
+			<a-animation attribute="material.opacity" begin="startanimation" to="0.5"></a-animation>
         </a-videosphere>
 	  
-		<a-image src="#play-image" position="-1 -2 -5" play-on-button-click></a-image>
-		<a-image src="#stop-image" position="1 -2 -5" pause-on-button-click></a-image>
+		<a-text id="question_text" value="Would you like to go back to the beginning of the clinical scenario or proceed to the end of the demonstration? \n
+		a) Go Back \n
+		b) End Demonstration" 
+		color="#FFFFFF"
+        position="-2 3 -5" scale="1.5 1.5 1.5" alignment="center" visible="false" font="mozillavr">
+			<a-box color="black" position="2.4 0 -0.01" scale="5.4 2.4 0.01" material="opacity: 0.8"></a-box>
+			<!--Correct answer-->
+			<a-box id="answer1" scale="2.7 1 0.01" color="black" position="3.75 -1.7 0" custom_link="age_well_end.html" material="opacity: 0.8">
+				<a-text value="B" color="white" position="-0.1 0 0.1" scale="2 2 2" alignment="center"></a-text>
+				<a-animation attribute="material.color" begin="mouseenter" dur="300" from="black" to="red"></a-animation>
+				<a-animation attribute="material.color" begin="mouseleave" dur="300" from="red" to="black"></a-animation>
+			</a-box>
+			<!--Incorrect answer-->
+			<a-box id="answer2" color="black" scale="2.7 1 0.01" position="1.05 -1.7 0" custom_link="age_well_video_question1.html" material="opacity: 0.8">
+				<a-text value="A" color="white" position="-0.1 0 0.1" scale="2 2 2" alignment="center"></a-text>
+				<a-animation attribute="material.color" begin="mouseenter" dur="300" from="black" to="red"></a-animation>
+				<a-animation attribute="material.color" begin="mouseleave" dur="300" from="red" to="black"></a-animation>
+			</a-box>
+		</a-text>
+		
+		
+		
 		
 		<a-light type="ambient" color="#445451"></a-light>
 		<a-light type="point" intensity="2" position="2 4 4"></a-light>
 		
-		<a-camera >
-			<a-cursor></a-cursor>
-		</a-camera>
+		
+			<a-camera id="camera" wasd-controls-enabled="false">
+				<a-entity position="0 0 -3"
+					geometry="primitive: ring; radiusInner: 0.04; radiusOuter: 0.06;"
+					material="color: cyan; shader: flat"
+					cursor="maxDistance: 30; fuse: true">
+				</a-entity>
+			</a-camera>
 		
 		
 		<a-assets>
 		
 		
 		<!-- Single source video. -->
-        <video id="video1" src="website_vault_360.mp4" preload="auto" autoplay style="display:none" loop="false" crossOrigin="anonymous"  playsinline webkit-playsinline> 
+        <video id="video1" src="3secondsV2.mp4" preload="auto" autoplay style="display:none" loop="false" crossOrigin="anonymous"  playsinline webkit-playsinline> 
         </video>
   
 		<img id="play-image" src="play-button.png">
 		<img id="stop-image" src="stop-button.png">
 		
 		
+		
     </a-assets>
 		<script>
-			document.getElementById('video1').addEventListener('ended',videoEnded,false);
-		function videoEnded(e) {
-			window.location.href = age_well_end.html;	
+			document.getElementById('video1').addEventListener('ended',myHandler,false);
+			var player = document.getElementById('player');
+	
+			function myHandler(e) {
+				var question = document.querySelector("#question_text");
+				question.setAttribute('visible', true);
+				player.emit('startanimation');	
+			
 		}
 		</script>
 	</a-scene>

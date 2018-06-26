@@ -51,3 +51,75 @@ AFRAME.registerComponent('play-on-button-click', {
 				}
 
 			}); 
+			
+			
+		AFRAME.registerComponent('start_animation', {
+				schema: {default: ''},
+
+				init: function () {
+					
+					this.addEventListener('ended',videoEnded,false);
+					function videoEnded(e) {
+						this.el.emit('startcyl');	
+					}
+				}
+
+			}); 
+			
+			
+		AFRAME.registerComponent('lock_vision', {
+				schema: {
+					target: {type: 'string'},
+					video: {type: 'string'},
+					xpos: {type: 'number', default: 0},
+					ypos: {type: 'number', default: 0},
+					zpos: {type: 'number', default: 0}
+				
+				},
+				
+				init: function () {
+					console.log(this.data.target);
+					var target = this.data.target;
+					var video = document.querySelector('#video1');
+					var target_element = document.querySelector('#camera_rig');
+					var pos = target_element.getAttribute('position');
+					pos.x = this.data.xpos;
+					pos.y = this.data.ypos;
+					pos.z = this.data.zpos;
+					
+					video.addEventListener('ended', function () {
+						target_element.setAttribute('position', pos);
+						document.querySelector('[camera]').removeAttribute('wasd-controls');
+					});
+				}
+
+			}); 
+			
+			AFRAME.registerComponent('bounding_box', {
+				schema: {
+					xpos: {type: 'number', default: 0},
+					ypos: {type: 'number', default: 0}
+				
+				},
+				
+				init: function () {
+					var camera = document.querySelector('[camera]');
+					var pos = camera.getAttribute('position');	
+				}
+				tick: function (time, timeDelta) {
+					console.log(pos.x);
+					if(pos.x > xpos){
+						camera.setAttribute('position', xpos)
+					}
+					if(pos.z > zpos){
+						camera.setAttribute('position', zpos)
+					}
+					if(pos.x < -xpos){
+						camera.setAttribute('position', -xpos)
+					}
+					if(pos.z > -zpos){
+						camera.setAttribute('position', -zpos)
+					}
+				}	
+
+			}); 

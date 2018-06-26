@@ -15,7 +15,8 @@
 		
 		 <!-- The original example also has this 180 degree rotation, to appear to be going forward. -->
         <a-videosphere id="player" rotation="0 180 0" src="#video1" >
-        </a-videosphere>
+			<a-animation attribute="material.opacity" begin="startanimation" to="0.5"></a-animation>
+		</a-videosphere>
 	  
 		<!--<a-image src="#play-image" position="-1 -2 -5" play-on-button-click></a-image>
 		<a-image src="#stop-image" position="1 -2 -5" pause-on-button-click></a-image>
@@ -23,17 +24,25 @@
 		<a-light type="ambient" color="#445451"></a-light>
 		<a-light type="point" intensity="2" position="2 4 4"></a-light>
 		
-		<a-camera >
-			<a-cursor></a-cursor>
-		</a-camera>
+		
+			<a-camera id="camera" wasd-controls-enabled="false">
+				<a-entity position="0 0 -3"
+					geometry="primitive: ring; radiusInner: 0.04; radiusOuter: 0.06;"
+					material="color: cyan; shader: flat"
+					cursor="maxDistance: 30; fuse: true">
+				</a-entity>
+			</a-camera>
+		
 		
 		<a-entity id="text">
 			<a-text id="instructions" value="Drag to look around the video" position="-4 0 -5" scale="3 3 3" visible="true"></a-text>
-			<a-animation attribute="visible" begin="10000" dur="1000" to="false" repeat="indefinite"></a-animation>
+			<a-animation attribute="visible" begin="5000" dur="1000" to="false" repeat="indefinite"></a-animation>
 		</a-entity>
-		<a-text id="instructions" value="Drag to look around the video" position="0 0 -5" visible="true">
-			<a-animation attribute="visible" dur="19000" to="false"></a-animation>
-		</a-text>
+		
+		
+		<a-box id="playbutton" position="0 0 -5" color="black" material="opacity: 0.8" scale="1 1 0.01" custom_link="age_well_video_question1.html" visible="false">
+			<a-text value="play" position="-0.4 0.25 0" font="mozillavr" scale="2 2 1"></a-text>
+		</a-box>
 		
 		<a-assets>
 		
@@ -48,10 +57,14 @@
 		
     </a-assets>
 		<script>
-			document.getElementById('video1').addEventListener('ended',videoEnded,false);
-		function videoEnded(e) {
-			window.location.href = "age_well_video_question1.html";	
-		}
+			var vid = document.getElementById('video1');
+			var player = document.getElementById('player');
+			vid.addEventListener('ended',videoEnded,false);
+			function videoEnded(e) {
+				player.emit('startanimation');	
+				var play = document.querySelector("#playbutton");
+				play.setAttribute('visible', true);
+			}
 		</script>
 	</a-scene>
   </body>
