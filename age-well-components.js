@@ -123,3 +123,34 @@ AFRAME.registerComponent('play-on-button-click', {
 				}	
 
 			}); 
+			
+			
+			
+			AFRAME.registerComponent('change_images', {
+				schema: {
+					image1: {type: 'number', default: 0},
+					image2: {type: 'number', default: 0}
+				
+				},
+				
+				init: function () {
+					var camera = document.querySelector('[camera]');
+					var pos = camera.getAttribute('position');	
+				}
+				tick: function (time, timeDelta) {
+					console.log(pos.x);
+					if(pos.x > xpos){
+						camera.setAttribute('position', xpos)
+					}
+					if(pos.z > zpos){
+						camera.setAttribute('position', zpos)
+					}
+					if(pos.x < -xpos){
+						camera.setAttribute('position', -xpos)
+					}
+					if(pos.z > -zpos){
+						camera.setAttribute('position', -zpos)
+					}
+				}	
+
+			}); 

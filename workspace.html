@@ -58,8 +58,13 @@
 		<a-text id="instructions1" value="Click and drag \n the mouse in \n the direction \n you want to \n turn the screen" color="#FFFFFF"
 			position="-4.6 1.6 -4.9" scale="0.9 0.9 1" alignment="center" font="mozillavr">
 				<a-box color="black" material="opacity: 0.8" position="0.76 -0.10 -0.01" scale="1.57 1.1 0.01" transparent="true"></a-box>
-				<a-image src="mouse_grab.png" position="0.75 1 0" scale="0.3 0.3 0.3">
+				<a-image src="Keyboard_Black_Mouse_Left.png" position="1 1 0" scale="0.5 0.5 0.5">
 					<a-animation attribute="position" to="0.5 1.5 0" direction="alternate" dur="2000" repeat="indefinite"></a-animation>
+					<a-animation attribute="visible" from="true" to="false" direction="alternate" delay="2000" dur="1" repeat="indefinite"></a-animation>
+				</a-image>
+				<a-image src="Keyboard_Black_Mouse_Simple.png" position="1 1 0" scale="0.5 0.5 0.5" visible="false">
+					<a-animation attribute="position" to="0.5 1.5 0" direction="alternate" dur="2000" repeat="indefinite"></a-animation>
+					<a-animation attribute="visible" from="false" to="true" direction="alternate" delay="2000" dur="1" repeat="indefinite"></a-animation>
 				</a-image>
 		</a-text>
 		
@@ -78,12 +83,17 @@
 		<a-text id="instructions3" value="Use the WASD \n or arrow keys \n to navigate \n around the \n page" color="#FFFFFF"
 			position="3.3 1.5 -4.9" scale="0.9 0.9 1" alignment="center" font="mozillavr">
 				<a-box color="black" material="opacity: 0.8" position="0.74 -0.13 -0.01" scale="1.6 1.14 0.01" transparent="true"></a-box>
-				<a-image src="arrowkeys.png" position="0.75 1.25 0" ></a-image>
+				<a-entity id="arrow_keys" position="0.65 1.25 0" scale="0.6 0.6 0.6">
+					<a-image src="Keyboard_Black_Arrow_Down.png" position="0 0 0" ></a-image>
+					<a-image src="Keyboard_Black_Arrow_Up.png" position="0 1 0" ></a-image>
+					<a-image src="Keyboard_Black_Arrow_Left.png" position="-1 0 0" ></a-image>
+					<a-image src="Keyboard_Black_Arrow_Right.png" position="1 0 0" ></a-image>
+				</a-entity>
 			</a-text>
 		
 		<!-- start button-->
 		<a-text id="start-button-text" value="START" position="-0.25 0.5 -3" color="white">
-			<a-sphere id="start-button"src="blue_yellow_glass.jpg" custom_link="age_well_intro.html" position="0.35 0 -0.25" rotation="0 0 0" radius="0.25">
+			<a-sphere id="start-button"src="Keyboard_Black_Quote.png" custom_link="age_well_intro.html" position="0.35 0 -0.25" rotation="0 0 0" radius="0.25">
 				<a-animation attribute="rotation" to="0 360 0" dur="5000" repeat="indefinite" easing="linear"></a-animation>
 			
 			</a-sphere>
