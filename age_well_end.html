@@ -16,6 +16,7 @@
 		
 		 <!-- The original example also has this 180 degree rotation, to appear to be going forward. -->
         <a-videosphere id="player" rotation="0 180 0" src="#video1" >
+			<a-animation attribute="material.opacity" begin="startanimation" to="0.5"></a-animation>
         </a-videosphere>
 	    <!--
 		<a-image src="#play-image" position="-1 -2 -5" play-on-button-click></a-image>
@@ -34,8 +35,10 @@
 			</a-camera>
 		
 		
-		<a-box id="replay_button" position="0 0 -5" color="black" material="opacity: 0.8" scale="1 1 0.01" custom_link="workspace.html" visible="false">
-			<a-text value="play" position="-0.4 0.25 0" font="mozillavr" scale="2 2 1"></a-text>
+		<a-box id="replay_button" position="0 0 -5" color="black" material="opacity: 0.8" scale="7.5 2 0.01" custom_link="workspace.html" visible="false">
+			<a-text value="Return to Lobby" position="0 0 0" scale="0.5 0.5 1" text="align: center"></a-text>
+			<a-animation attribute="material.color" begin="mouseenter" dur="300" from="black" to="red"></a-animation>
+			<a-animation attribute="material.color" begin="mouseleave" dur="300" from="red" to="black"></a-animation>
 		</a-box>
 		
 		
@@ -53,9 +56,11 @@
     </a-assets>
 		<script>
 			document.getElementById('video1').addEventListener('ended',myHandler,false);
+			var player = document.getElementById('player');
 			function myHandler(e) {
 				var replay = document.querySelector("#replay_button");
 				replay.setAttribute('visible', true);
+				player.emit('startanimation');	
 		}
 		</script>
 	</a-scene>
