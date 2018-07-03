@@ -31,17 +31,15 @@
 					material="color: cyan; shader: flat"
 					cursor="maxDistance: 30; fuse: true">
 				</a-entity>
+				<a-entity id="text">
+					<a-text id="instructions" value="Drag to look around the video" position="-4 0 -5" scale="3 3 3" visible="true"></a-text>
+					<a-animation attribute="visible" begin="5000" dur="1000" to="false" repeat="indefinite"></a-animation>
+				</a-entity>
 			</a-camera>
 		
 		
-		<a-entity id="text">
-			<a-text id="instructions" value="Drag to look around the video" position="-4 0 -5" scale="3 3 3" visible="true"></a-text>
-			<a-animation attribute="visible" begin="5000" dur="1000" to="false" repeat="indefinite"></a-animation>
-		</a-entity>
-		
-		
 		<a-box id="playbutton" position="0 0 -5" color="black" material="opacity: 0.8" scale="1 1 0.01" custom_link="age_well_video_question1.html" visible="false">
-			<a-text value="play" position="-0.4 0.25 0" font="mozillavr" scale="2 2 1"></a-text>
+			<a-text value="play" position="-0.4 0.25 0" scale="2 2 1"></a-text>
 			<a-animation attribute="material.color" begin="mouseenter" dur="300" from="black" to="red"></a-animation>
 			<a-animation attribute="material.color" begin="mouseleave" dur="300" from="red" to="black"></a-animation>
 		</a-box>

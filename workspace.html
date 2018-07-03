@@ -8,20 +8,7 @@
 	<script src="https://cdn.rawgit.com/donmccurdy/aframe-extras/v4.1.2/dist/aframe-extras.min.js"></script>
 	<script src="https://unpkg.com/super-hands@2.1.0/dist/super-hands.min.js"></script>
 	<script src="https://cdn.rawgit.com/donmccurdy/aframe-physics-system/v3.1.2/dist/aframe-physics-system.min.js"></script> 
-	<script>
-		AFRAME.registerComponent('custom_link', {
-				schema: {default: ''},
-
-				init: function () {
-					var url = this.data;
-					this.el.addEventListener('click', function () {
-						window.location.href = url;
-					});
-				}
-
-			}); 
-			
-	</script>
+	<script src="age-well-components.js"></script> 
   
 	
   </head>
@@ -56,10 +43,8 @@
 	<a-entity id="room" position="0 0 0">
 		<!--instructions-->
 		<a-text id="instructions1" value="Click and drag \n the mouse in \n the direction \n you want to \n turn the screen" color="#FFFFFF"
-			position="-4 1.6 -4.9" scale="0.9 0.9 1" text="align: center" font="mozillavr">
-				<a-box color="black" material="opacity: 0.8" position="0 -0.10 -0.01" scale="1.57 1.1 0.01" transparent="true">
-					<a-box scale="1.1 1.1 0.01" material="opacity: 0.8" color="grey"></a-box>
-				</a-box>
+			position="-4 1.6 -4.9" scale="0.9 0.9 1" text="align: center">
+				<a-box scale="1.6 1.18 0.01" position="0 -0.03 -0.01" material="opacity: 0.5" color="grey"></a-box>
 				<a-image src="Keyboard_Black_Mouse_Left.png" position="0 1 0" scale="0.5 0.5 0.5">
 					<a-animation attribute="position" to="0.5 1.5 0" direction="alternate" dur="2000" repeat="indefinite"></a-animation>
 					<a-animation attribute="visible" from="true" to="false" direction="alternate" delay="2000" dur="1" repeat="indefinite"></a-animation>
@@ -71,10 +56,8 @@
 		</a-text>
 		
 		<a-text id="instructions2" value="Position the \n cursor over \n an object and \n click to interact \n with it" color="#FFFFFF"
-			position="0 1.6 -4.9" scale="0.9 0.9 1" text="align: center" font="mozillavr">
-				<a-box color="black" material="opacity: 0.8" position="0 -0.12 -0.01" scale="1.616 1.14 0.01" transparent="true">
-					<a-box scale="1.1 1.1 0.01" material="opacity: 0.8" color="grey"></a-box>
-				</a-box>
+			position="0 1.6 -4.9" scale="0.9 0.9 1" text="align: center">
+				<a-box scale="1.6 1.18 0.01" position="0 -0.03 -0.01" material="opacity: 0.5" color="grey"></a-box>
 				<a-text id="start-button-text" value="START" position="0 1 0" color="white" scale="0.5 0.5 0.5">
 					<a-sphere id="start-button"src="blue_yellow_glass.jpg" position="0.35 0 -0.1" rotation="0 0 0" radius="0.25" scale="1 1 0.1" static-body>			
 					</a-sphere>
@@ -84,11 +67,9 @@
 				</a-text>
 			</a-text>
 	
-		<a-text id="instructions3" value="Use the WASD \n or arrow keys \n to navigate \n around the \n page" color="#FFFFFF"
-			position="4 1.5 -4.9" scale="0.9 0.9 1" text="align: center" font="mozillavr">
-				<a-box color="black" material="opacity: 0.8" position="0 -0.13 -0.01" scale="1.6 1.14 0.01" transparent="true">
-					<a-box scale="1.1 1.1 0.01" material="opacity: 0.8" color="grey"></a-box>
-				</a-box>
+		<a-text id="instructions3" value="Use the arrow \n keys to navigate \n around the \n page" color="#FFFFFF"
+			position="4 1.5 -4.9" scale="0.9 0.9 1" text="align: center">
+				<a-box scale="1.65 1 0.01" position="0 -0.03 -0.01" material="opacity: 0.5" color="grey"></a-box>
 				<a-entity id="arrow_keys" position="0 1 0" scale="0.5 0.5 0.5">
 					<a-image src="Keyboard_Black_Arrow_Down.png" position="0 0 0" ></a-image>
 					<a-image src="Keyboard_Black_Arrow_Up.png" position="0 1 0" ></a-image>
@@ -110,11 +91,11 @@
 	
 		<!-- logos -->
 	
-		<a-image src="age-well-competition.jpg" position="-4.9 2.5 -4" rotation="0 90 0">
+		<a-image src="age-well-competition.jpg" position="-4.9 2.5 -3.75" rotation="0 90 0">
 			<a-box color="black" material="opacity: 0.8" position="-0 0 -0.01" scale="1.1 1.1 0.01" transparent="true"></a-box>
 		</a-image>
 	
-		<a-image src="Competition-Logo1.png" position="4.9 2.5 -4" rotation="0 -90 0">
+		<a-image src="Competition-Logo1.png" position="4.9 2.5 -3.75" rotation="0 -90 0">
 			<a-box color="black" material="opacity: 0.8" position="0 0 -0.01" scale="1.1 1.1 0.01" transparent="true"></a-box>
 		</a-image>
 		
@@ -215,17 +196,18 @@
 	
 		<!--door--> 
 
-			<a-box color="gray" opacity="0.8" position="0 2 5" scale="0.1 4 2" rotation="0 -90 0" metalness="1" roughness="0.7">
+			<a-entity id="door" position="0 2 5" rotation="0 -90 0" scale="0.1 4 2">
+				<a-box static-body color="gray" opacity="0.8" position="0 0 0" rotation="0 0 0" metalness="1" roughness="0.7"></a-box>
 				<a-box color="#c0c0c0" metalness="0.6" scale="0.1 0.5 0.1" position="-0.6 0 0.35"></a-box>
 				<a-box color="#c0c0c0" metalness="0.6" scale="0.1 0.1 0.1" position="-0.2 0.4 -0.45"></a-box>
 				<a-box color="#c0c0c0" metalness="0.6" scale="0.1 0.1 0.1" position="-0.2 -0.4 -0.45"></a-box>
-			</a-box>
+			</a-entity>
 		
 		<!--floor--> 
 	
 			<a-plane static-body src="#floorTexture" repeat="5 5" rotation="-90 0 0" width="10" height="10"></a-plane>
 			<a-plane src="#floorTexture" position="0 4.5 0" repeat="5 5" rotation="90 0 0" width="10" height="10"></a-plane>	
-	
+			<a-plane src="age_well_floor_logo.png" position="0 0.1 0" rotation="-90 0 0" scale="7 7 7"></a-plane>
 	</a-entity>
 	<!--background--> 
 	  <a-sky src="#skyTexture"></a-sky>
