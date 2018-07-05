@@ -32,11 +32,11 @@
                   camera
                   position="0 1.6 0"
                   look-controls="pointerLockEnabled: true">
-				  <a-entity position="0 0 -3"
-					geometry="primitive: ring; radiusInner: 0.04; radiusOuter: 0.06;"
-					material="color: cyan; shader: flat"
-					cursor="maxDistance: 30; fuse: true">
-				</a-entity>
+					<a-entity position="0 0 -1"
+						geometry="primitive: ring; radiusInner: 0.015; radiusOuter: 0.02;"
+						material="color: cyan; shader: flat"
+						cursor="maxDistance: 30; fuse: true">
+					</a-entity>
 				  
 		</a-entity>
     </a-entity>
@@ -59,8 +59,8 @@
 			position="0 1.6 -4.9" scale="0.9 0.9 1" text="align: center">
 				<a-box scale="1.6 1.18 0.01" position="0 -0.03 -0.01" material="opacity: 0.5" color="grey"></a-box>
 				<a-text id="start-button-text" value="START" position="0 1 0" color="white" scale="0.5 0.5 0.5">
-					<a-sphere id="start-button"src="blue_yellow_glass.jpg" position="0.35 0 -0.1" rotation="0 0 0" radius="0.25" scale="1 1 0.1" static-body>			
-					</a-sphere>
+					<a-box id="start-button"src="Keyboard_Black_Quote.png" custom_link="age_well_intro.html" position="0.35 0 -0.1" rotation="0 0 45" scale="0.5 0.5 0.1">			
+					</a-box>
 					<a-ring color="cyan" radius-inner="1.3" radius-outer="2" scale="0.06 0.06 0.06" position="0.5 0 0.1">
 						<a-animation attribute="position" to="-1 1.5 0.1" direction="alternate" dur="3200" repeat="indefinite"></a-animation>
 					</a-ring>
@@ -68,7 +68,7 @@
 			</a-text>
 	
 		<a-text id="instructions3" value="Use the arrow \n keys to navigate \n around the \n page" color="#FFFFFF"
-			position="4 1.5 -4.9" scale="0.9 0.9 1" text="align: center">
+			position="4 1.6 -4.9" scale="0.9 0.9 1" text="align: center">
 				<a-box scale="1.65 1 0.01" position="0 -0.03 -0.01" material="opacity: 0.5" color="grey"></a-box>
 				<a-entity id="arrow_keys" position="0 1 0" scale="0.5 0.5 0.5">
 					<a-image src="Keyboard_Black_Arrow_Down.png" position="0 0 0" ></a-image>
@@ -79,12 +79,12 @@
 			</a-text>
 		
 		<!-- start button-->
-		<a-text id="start-button-text" value="START" position="-0.25 0.5 -3" color="white">
-			<a-sphere id="start-button"src="Keyboard_Black_Quote.png" custom_link="age_well_intro.html" position="0.35 0 -0.25" rotation="0 0 0" radius="0.25">
-				<a-animation attribute="rotation" to="0 360 0" dur="5000" repeat="indefinite" easing="linear"></a-animation>
+		<a-text id="start-button-text" value="START" position="0 0.5 -3" color="white" text="align: center">
+			<a-box id="start-button"src="Keyboard_Black_Quote.png" custom_link="age_well_intro.html" position="0 0 -0.25" rotation="45 0 45" scale="0.3 0.3 0.3">
+				<a-animation attribute="rotation" to="45 360 45" dur="5000" repeat="indefinite" easing="linear"></a-animation>
 			
-			</a-sphere>
-			<a-animation attribute="position" to="-0.25 0.6 -3" direction="alternate" dur="2000" repeat="indefinite"></a-animation>
+			</a-box>
+			<a-animation attribute="position" to="0 0.6 -3" direction="alternate" dur="2000" repeat="indefinite"></a-animation>
 			<a-animation attribute="scale" begin="mouseenter" dur="300" to="1.5 1.5 1.5"></a-animation>
 			<a-animation attribute="scale" begin="mouseleave" dur="300" to="1 1 1"></a-animation>
 		</a-text>
@@ -99,8 +99,8 @@
 			<a-box color="black" material="opacity: 0.8" position="0 0 -0.01" scale="1.1 1.1 0.01" transparent="true"></a-box>
 		</a-image>
 		
-		<a-image src="Luxsonic-Logo-2.png" position="-4.9 2.5 0" rotation="0 90 0" scale="1.6 1 1">
-			<a-box color="black" material="opacity: 0.8" position="-0 0 -0.01" scale="1.1 1.1 0.01" transparent="true"></a-box>
+		<a-image src="Luxsonic-Logo-2.png" position="-4.9 2.5 0" rotation="0 90 0" scale="1.8 0.6 1">
+			<a-box color="white" material="opacity: 0.8" position="0 0 -0.01" scale="1.1 1.1 0.01" transparent="true"></a-box>
 		</a-image>
 
 		<!--baseboards-->  
