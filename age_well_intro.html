@@ -5,7 +5,7 @@
     <script src="https://aframe.io/releases/0.7.1/aframe.min.js"></script>
     <script src="https://unpkg.com/super-hands@2.1.0/dist/super-hands.min.js"></script>
 	<script src="https://cdn.rawgit.com/donmccurdy/aframe-physics-system/v3.1.2/dist/aframe-physics-system.min.js"></script> 
-	<script src="age-well-components.js"></script>
+	<script src="js/age-well-components.js"></script>
   
   <script>
 		
@@ -25,7 +25,7 @@
 		<a-light type="point" intensity="2" position="2 4 4"></a-light>
 		
 		
-			<a-camera id="camera" wasd-controls-enabled="false">
+			<a-camera id="camera" wasd-controls-enabled="false" rotation="0 -90 0">
 				<a-entity position="0 0 -1"
 						geometry="primitive: ring; radiusInner: 0.015; radiusOuter: 0.02;"
 						material="color: cyan; shader: flat"
@@ -38,7 +38,7 @@
 			</a-camera>
 		
 		
-		<a-box id="playbutton" position="0 0 -5" color="black" material="opacity: 0.8" scale="1.5 1 0.01" custom_link="age_well_video_question1.html" visible="false">
+		<a-box id="playbutton" rotation="0 -90 0" position="5 0 0" color="black" material="opacity: 0.8" scale="1.5 1 0.01" visible="false">
 			<a-text value="play" position="0 0 0" scale="2 2 1" text="align: center"></a-text>
 			<a-animation attribute="material.color" begin="mouseenter" dur="300" from="black" to="red"></a-animation>
 			<a-animation attribute="material.color" begin="mouseleave" dur="300" from="red" to="black"></a-animation>
@@ -48,11 +48,11 @@
 		
 		
 		<!-- Single source video. -->
-        <video id="video1" src="3secondsV2.mp4" preload="auto" autoplay style="display:none" loop="false" crossOrigin="anonymous"  playsinline webkit-playsinline> 
+        <video id="video1" src="assets/AGE-WELL Intro.mp4" preload="auto" autoplay style="display:none" loop="false" crossOrigin="anonymous"  playsinline webkit-playsinline> 
         </video>
   
-		<img id="play-image" src="play-button.png">
-		<img id="stop-image" src="stop-button.png">
+		<img id="play-image" src="assets/play-button.png">
+		<img id="stop-image" src="assets/stop-button.png">
 		
 		
     </a-assets>
@@ -64,7 +64,11 @@
 				player.emit('startanimation');	
 				var play = document.querySelector("#playbutton");
 				play.setAttribute('visible', true);
+				play.addEventListener('click', function () {
+					window.location.href = "age_well_video_question1.html";
+				});
 			}
+			
 		</script>
 	</a-scene>
   </body>

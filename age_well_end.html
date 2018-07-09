@@ -5,7 +5,7 @@
     <script src="https://aframe.io/releases/0.7.1/aframe.min.js"></script>
     <script src="https://unpkg.com/super-hands@2.1.0/dist/super-hands.min.js"></script>
 	<script src="https://cdn.rawgit.com/donmccurdy/aframe-physics-system/v3.1.2/dist/aframe-physics-system.min.js"></script> 
-	<script src="age-well-components.js"></script> 
+	<script src="js/age-well-components.js"></script> 
   
   <script>
 		
@@ -26,7 +26,7 @@
 		<a-light type="point" intensity="2" position="2 4 4"></a-light>
 		
 		
-			<a-camera id="camera" wasd-controls-enabled="false">
+			<a-camera id="camera" wasd-controls-enabled="false" rotation="0 -90 0">
 				<a-entity position="0 0 -1"
 						geometry="primitive: ring; radiusInner: 0.015; radiusOuter: 0.02;"
 						material="color: cyan; shader: flat"
@@ -35,7 +35,7 @@
 			</a-camera>
 		
 		
-		<a-box id="replay_button" position="0 0 -5" color="black" material="opacity: 0.8" scale="7.5 2 0.01" custom_link="workspace.html" visible="false">
+		<a-box id="replay_button" position="5 0 0" rotation="0 -90 0" color="black" material="opacity: 0.8" scale="7.5 2 0.01" visible="false">
 			<a-text value="Return to Lobby" position="0 0 0" scale="0.5 0.5 1" text="align: center"></a-text>
 			<a-animation attribute="material.color" begin="mouseenter" dur="300" from="black" to="red"></a-animation>
 			<a-animation attribute="material.color" begin="mouseleave" dur="300" from="red" to="black"></a-animation>
@@ -46,20 +46,23 @@
 		
 		
 		<!-- Single source video. -->
-        <video id="video1" src="3secondsV2.mp4" preload="auto" autoplay style="display:none" loop="false" crossOrigin="anonymous"  playsinline webkit-playsinline> 
+        <video id="video1" src="assets/AGE-WELL Outro.mp4" preload="auto" autoplay style="display:none" loop="false" crossOrigin="anonymous"  playsinline webkit-playsinline> 
         </video>
   
-		<img id="play-image" src="play-button.png">
-		<img id="stop-image" src="stop-button.png">
+		<img id="play-image" src="assets/play-button.png">
+		<img id="stop-image" src="assets/stop-button.png">
 		
 		
     </a-assets>
 		<script>
-			document.getElementById('video1').addEventListener('ended',myHandler,false);
+			document.getElementById('video1').addEventListener('ended',videoEnd,false);
 			var player = document.getElementById('player');
-			function myHandler(e) {
+			function videoEnd(e) {
 				var replay = document.querySelector("#replay_button");
 				replay.setAttribute('visible', true);
+				replay.addEventListener('click', function () {
+					window.location.href = "workspace.html";
+				});
 				player.emit('startanimation');	
 		}
 		</script>

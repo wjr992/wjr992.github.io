@@ -5,7 +5,7 @@
     <script src="https://aframe.io/releases/0.7.1/aframe.min.js"></script>
     <script src="https://unpkg.com/super-hands@2.1.0/dist/super-hands.min.js"></script>
 	<script src="https://cdn.rawgit.com/donmccurdy/aframe-physics-system/v3.1.2/dist/aframe-physics-system.min.js"></script> 
-	<script src="age-well-components.js"></script>
+	<script src="js/age-well-components.js"></script>
   
   <script>
 			
@@ -26,16 +26,16 @@
 		a) Go Back \n
 		b) End Demonstration" 
 		color="#FFFFFF"
-        position="-2 3 -5" scale="1.5 1.5 1.5" alignment="center" visible="false">
-			<a-box color="black" position="2.4 0 -0.01" scale="5.4 2.4 0.01" material="opacity: 0.8"></a-box>
+        position="5 3 0" scale="1.5 1.5 1.5" text="align: center" visible="false" rotation="0 -90 0">
+			<a-box color="black" position="0 0 -0.01" scale="5.4 2.4 0.01" material="opacity: 0.8"></a-box>
 			<!--Correct answer-->
-			<a-box id="answer1" scale="2.7 1 0.01" color="black" position="4.05 -2 0" custom_link="age_well_end.html" material="opacity: 0.8">
+			<a-box id="answer1" scale="2.7 1 0.01" color="black" position="2.7 -2 0" material="opacity: 0.8">
 				<a-text value="B" color="white" position="-0.1 0 0.1" scale="2 2 2" alignment="center" material="opacity: 1"></a-text>
 				<a-animation attribute="material.color" begin="mouseenter" dur="300" from="black" to="red"></a-animation>
 				<a-animation attribute="material.color" begin="mouseleave" dur="300" from="red" to="black"></a-animation>
 			</a-box>
 			<!--Incorrect answer-->
-			<a-box id="answer2" color="black" scale="2.7 1 0.01" position="0.75 -2 0" custom_link="age_well_video_question1.html" material="opacity: 0.8">
+			<a-box id="answer2" color="black" scale="2.7 1 0.01" position="-2.7 -2 0" material="opacity: 0.8">
 				<a-text value="A" color="white" position="-0.1 0 0.1" scale="2 2 2" alignment="center" material="opacity: 1"></a-text>
 				<a-animation attribute="material.color" begin="mouseenter" dur="300" from="black" to="red"></a-animation>
 				<a-animation attribute="material.color" begin="mouseleave" dur="300" from="red" to="black"></a-animation>
@@ -51,7 +51,7 @@
 		<a-light type="point" intensity="2" position="2 4 4"></a-light>
 		
 		
-			<a-camera id="camera" wasd-controls-enabled="false">
+			<a-camera id="camera" wasd-controls-enabled="false" rotation="0 -90 0">
 				<a-entity position="0 0 -1"
 						geometry="primitive: ring; radiusInner: 0.015; radiusOuter: 0.02;"
 						material="color: cyan; shader: flat"
@@ -64,22 +64,30 @@
 		
 		
 		<!-- Single source video. -->
-        <video id="video1" src="3secondsV2.mp4" preload="auto" autoplay style="display:none" loop="false" crossOrigin="anonymous"  playsinline webkit-playsinline> 
+        <video id="video1" src="assets/AGE-WELL Scene 2.mp4" preload="auto" autoplay style="display:none" loop="false" crossOrigin="anonymous"  playsinline webkit-playsinline> 
         </video>
   
-		<img id="play-image" src="play-button.png">
-		<img id="stop-image" src="stop-button.png">
+		<img id="play-image" src="assets/play-button.png">
+		<img id="stop-image" src="assets/stop-button.png">
 		
 		
 		
     </a-assets>
 		<script>
-			document.getElementById('video1').addEventListener('ended',myHandler,false);
+			document.getElementById('video1').addEventListener('ended',videoEnd,false);
 			var player = document.getElementById('player');
 
-			function myHandler(e) {
+			function videoEnd(e) {
 				var question = document.querySelector("#question_text");
 				question.setAttribute('visible', true);
+				var answer1 = document.querySelector("#answer1");
+				var answer2 = document.querySelector("#answer2");
+				answer1.addEventListener('click', function () {
+					window.location.href = "age_well_end.html";
+				});
+				answer2.addEventListener('click', function () {
+					window.location.href = "age_well_video_question1.html";
+				});
 				player.emit('startanimation');	
 			
 		}
